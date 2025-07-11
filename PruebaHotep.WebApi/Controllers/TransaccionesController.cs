@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PruebaHotep.WebApi.DTOs;
 using PruebaHotep.WebApi.Models;
 using PruebaHotep.WebApi.Services;
 
@@ -15,27 +16,44 @@ namespace PruebaHotep.WebApi.Controllers
             _servicioTransaccion = servicioTransaccion;
         }
 
+        //asdasdsa
         [HttpPost("deposito")]
-        public async Task<ActionResult<Transaccion>> RealizarDeposito(string numeroCuenta, decimal monto)
+        public async Task<ActionResult<TransaccionCrearDTO>> RealizarDeposito([FromBody] TransaccionCrearDTO dto)
         {
-            try
+
+
+            var transaccion = await _servicioTransaccion.RegistrarDepositoAsync(dto.NumeroCuenta, dto.Monto);
+
+            var transaccionDTO = new TransaccionDTO
             {
-                var transaccion = await _servicioTransaccion.RegistrarDepositoAsync(numeroCuenta, monto);
-                return Ok(transaccion);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                Id = transaccion.Id,
+                Tipo = transaccion.Tipo,
+                FechaTransaccion = transaccion.FechaTransaccion,
+                Monto = transaccion.Monto,
+                SaldoResultante = transaccion.SaldoResultante
+            };
+
+            return Ok(transaccionDTO);
         }
 
         [HttpPost("retiro")]
-        public async Task<ActionResult<Transaccion>> RealizarRetiro(string numeroCuenta, decimal monto)
+        public async Task<ActionResult<TransaccionDTO>> RealizarRetiro([FromBody] TransaccionCrearDTO dto)
         {
+
             try
             {
-                var transaccion = await _servicioTransaccion.RegistrarRetiroAsync(numeroCuenta, monto);
-                return Ok(transaccion);
+                var transaccion = await _servicioTransaccion.RegistrarRetiroAsync(dto.NumeroCuenta, dto.Monto);
+
+                var transaccionDTO = new TransaccionDTO
+                {
+                    Id = transaccion.Id,
+                    Tipo = transaccion.Tipo,
+                    FechaTransaccion = transaccion.FechaTransaccion,
+                    Monto = transaccion.Monto,
+                    SaldoResultante = transaccion.SaldoResultante
+                };
+
+                return Ok(transaccionDTO);
             }
             catch (Exception ex)
             {
