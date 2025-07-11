@@ -10,10 +10,10 @@ namespace PruebaHotep.WebApi.Services
         private readonly IServicioCuenta _servicioCuenta;
 
         //constructor
-        public ServicioTransaccion (ContextoBD contexto, IServicioCuenta servicioCliente)
+        public ServicioTransaccion (ContextoBD contexto, IServicioCuenta servicioCuenta)
         {
             _contexto = contexto;
-            _servicioCuenta = servicioCliente;
+            _servicioCuenta = servicioCuenta;
         }
 
         //metodos
