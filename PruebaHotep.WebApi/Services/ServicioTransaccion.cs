@@ -25,6 +25,7 @@ namespace PruebaHotep.WebApi.Services
                 throw new Exception("Cuenta no encontrada");
             }
 
+
             var saldoActual = await _servicioCuenta.ObtenerSaldoActualAsync(numeroCuenta);
 
 

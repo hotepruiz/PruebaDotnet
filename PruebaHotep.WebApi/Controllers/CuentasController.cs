@@ -27,7 +27,7 @@ namespace PruebaHotep.WebApi.Controllers
                 Id = cuenta.Id,
                 NumeroCuenta = cuenta.NumeroCuenta,
                 SaldoInicial = cuenta.SaldoInicial,
-                Transacciones = new List<TransaccionResumida>()  // si está vacía al principio
+                ResumenTransacciones = new List<TransaccionResumida>()  // si está vacía al principio
             };
 
             return Ok(cuentaDTO);
@@ -46,7 +46,7 @@ namespace PruebaHotep.WebApi.Controllers
                 Id = cuenta.Id,
                 NumeroCuenta = cuenta.NumeroCuenta,
                 SaldoInicial = cuenta.SaldoInicial,
-                Transacciones = cuenta.Transacciones.Select(c => new TransaccionResumida
+                ResumenTransacciones = cuenta.Transacciones.Select(c => new TransaccionResumida
                 {
                     Tipo = c.Tipo,
                     Monto = c.Monto
@@ -57,7 +57,7 @@ namespace PruebaHotep.WebApi.Controllers
             return Ok(cuentaDTO);
         }
 
-        [HttpGet("saldo/{numeroCuenta}")]
+        [HttpGet("saldoActual/{numeroCuenta}")]
         public async Task<ActionResult<CuentaSaldoDTO?>> ObtenerSaldoActual(string numeroCuenta)
         {
             var saldo = await _servicioCuenta.ObtenerSaldoActualAsync(numeroCuenta);

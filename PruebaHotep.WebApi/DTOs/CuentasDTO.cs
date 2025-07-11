@@ -13,7 +13,7 @@
         public string NumeroCuenta { get; set; }
         public decimal SaldoInicial { get; set; }
 
-        public List<TransaccionResumida>? Transacciones { get; set; }
+        public List<TransaccionResumida>? ResumenTransacciones { get; set; }
     }
 
     public class CuentaSaldoDTO

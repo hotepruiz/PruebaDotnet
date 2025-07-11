@@ -61,13 +61,28 @@ namespace PruebaHotep.WebApi.Controllers
             }
         }
 
-        [HttpGet("{numeroCuenta}")]
-        public async Task<ActionResult<List<Transaccion>>> ObtenerHistorial(string numeroCuenta)
+        [HttpGet("/Historial/{numeroCuenta}")]
+        public async Task<ActionResult<List<TransaccionDTO>>> ObtenerHistorial(string numeroCuenta)
         {
             try
             {
                 var historial = await _servicioTransaccion.ObtenerHistorialAsync(numeroCuenta);
-                return Ok(historial);
+
+                if (historial == null || historial.Count == 0)
+                    return NotFound("No se encontraron transacciones para esta cuenta.");
+
+                var historialDTO = historial
+                    .Select(t => new TransaccionDTO{
+
+                        Id = t.Id,
+                        Tipo = t.Tipo,
+                        FechaTransaccion = t.FechaTransaccion,
+                        Monto = t.Monto,
+                        SaldoResultante = t.SaldoResultante
+                    }).ToList();
+
+
+                return Ok(historialDTO);
             }
             catch (Exception ex)
             {

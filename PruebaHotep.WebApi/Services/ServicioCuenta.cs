@@ -26,16 +26,36 @@ namespace PruebaHotep.WebApi.Services
             {
                 throw new Exception("El cliente no existe");
             }
+            if (SaldoInicial < 0)
+            {
+                throw new Exception("El monto inicial de una cuenta debe ser mayor a 0");
+            }
 
-            // ESTOY USANDO UN GENERADOR ALEATORIO PARA EL NUMERO DE LA CUENTA
-            var numeroCuenta = Guid.NewGuid().ToString().Substring(0, 10);
+            //crear el id nuevo de la venta
+            var ultimaCuenta = await _contexto.Cuentas.OrderByDescending(c => c.Id).FirstOrDefaultAsync();
+
+            int siguienteNumero;
+            int ultimoNumero;
+            if (ultimaCuenta == null)
+            {   
+                siguienteNumero = 1;
+            }
+            else 
+            {
+                siguienteNumero = int.Parse(ultimaCuenta.NumeroCuenta) + 1;
+
+            }
+
+
+            // Convertir a string con ceros a la izquierda, por ejemplo: 0000000001
+            string numeroCuenta = siguienteNumero.ToString("D10");
 
             var cuenta = new Cuenta
-            {
-                NumeroCuenta = numeroCuenta,
-                ClienteId = clienteId,
-                SaldoInicial = SaldoInicial
-            };
+                {
+                    NumeroCuenta = numeroCuenta,
+                    ClienteId = clienteId,
+                    SaldoInicial = SaldoInicial
+                };
 
             _contexto.Cuentas.Add(cuenta);
             await _contexto.SaveChangesAsync();
