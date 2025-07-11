@@ -12,7 +12,7 @@ namespace PruebaHotep.Tests
         private ContextoBD GetContextoInMemory() //simular la base de datos
         {
             var options = new DbContextOptionsBuilder<ContextoBD>()
-                .UseInMemoryDatabase(databaseName: "TestDb")
+                .UseInMemoryDatabase(databaseName: "TestDbTrans")
                 .Options;
             return new ContextoBD(options);
         }
