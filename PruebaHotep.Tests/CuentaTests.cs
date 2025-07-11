@@ -45,8 +45,8 @@ namespace PruebaHotep.Tests
         public async Task TestConsultarSaldo()
         {
             // preludio
-            var contexto = GetContextoInMemory();
-            var servicioCliente = new ServicioCliente(contexto);
+            var contextoConsultarSaldo = GetContextoInMemory();
+            var servicioCliente = new ServicioCliente(contextoConsultarSaldo);
             var nuevoCliente = await servicioCliente.CrearClienteAsync(new Cliente
             {
                 Nombre = "Test",
@@ -55,7 +55,7 @@ namespace PruebaHotep.Tests
                 Ingresos = 1000
             });
             
-            var servicioCuenta = new ServicioCuenta(contexto, servicioCliente);
+            var servicioCuenta = new ServicioCuenta(contextoConsultarSaldo, servicioCliente);
              
             
             var cuenta = await servicioCuenta.CrearCuentaAsync(nuevoCliente.Id, 500);
