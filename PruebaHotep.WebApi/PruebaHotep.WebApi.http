@@ -1,0 +1,6 @@
+@PruebaHotep.WebApi_HostAddress = http://localhost:5049
+
+GET {{PruebaHotep.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
