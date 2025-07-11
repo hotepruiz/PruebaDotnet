@@ -16,10 +16,9 @@ out/
 *.DS_Store
 Thumbs.db
 
-# Migrations/
-
-# Base de datos SQLite - NO la ignoramos porque NO la vamos a subir, la dejamos fuera para que se genere localmente
+# Base de datos SQLite 
 *.db
+!PruebaHotep.WebApi/banco.db
 
 # Secretos
 secrets.json
