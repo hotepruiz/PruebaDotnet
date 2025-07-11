@@ -21,10 +21,10 @@ namespace PruebaHotep.Tests
         public async Task TestearDeposito()
         {
             //preludio
-            var contexto = GetContextoInMemory();
-            var servicioCliente = new ServicioCliente(contexto);
-            var servicioCuenta = new ServicioCuenta(contexto, servicioCliente);
-            var servicioTransaccion = new ServicioTransaccion(contexto, servicioCuenta);
+            var contextoDeposito = GetContextoInMemory();
+            var servicioCliente = new ServicioCliente(contextoDeposito);
+            var servicioCuenta = new ServicioCuenta(contextoDeposito, servicioCliente);
+            var servicioTransaccion = new ServicioTransaccion(contextoDeposito, servicioCuenta);
 
             var cliente = await servicioCliente.CrearClienteAsync(new Cliente
             {
@@ -50,10 +50,10 @@ namespace PruebaHotep.Tests
         public async Task TestearRetiro()
         {
             //preludio
-            var contexto = GetContextoInMemory();
-            var servicioCliente = new ServicioCliente(contexto);
-            var servicioCuenta = new ServicioCuenta(contexto, servicioCliente);
-            var servicioTransaccion = new ServicioTransaccion(contexto, servicioCuenta);
+            var contextoRetiro = GetContextoInMemory();
+            var servicioCliente = new ServicioCliente(contextoRetiro);
+            var servicioCuenta = new ServicioCuenta(contextoRetiro, servicioCliente);
+            var servicioTransaccion = new ServicioTransaccion(contextoRetiro, servicioCuenta);
 
             var cliente = await servicioCliente.CrearClienteAsync(new Cliente
             {
@@ -79,10 +79,10 @@ namespace PruebaHotep.Tests
         public async Task TestearHistorial()
         {
             //preludio
-            var contexto = GetContextoInMemory();
-            var servicioCliente = new ServicioCliente(contexto);
-            var servicioCuenta = new ServicioCuenta(contexto, servicioCliente);
-            var servicioTransaccion = new ServicioTransaccion(contexto, servicioCuenta);
+            var contextoHistorial = GetContextoInMemory();
+            var servicioCliente = new ServicioCliente(contextoHistorial);
+            var servicioCuenta = new ServicioCuenta(contextoHistorial, servicioCliente);
+            var servicioTransaccion = new ServicioTransaccion(contextoHistorial, servicioCuenta);
 
             var cliente = await servicioCliente.CrearClienteAsync(new Cliente
             {

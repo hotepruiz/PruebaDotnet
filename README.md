@@ -18,13 +18,13 @@ en todos los requerimientos dados en el PDF de instrucciones.
 - Se implementaron tests para probar funcionalidades de: creacion de una cuenta, operaciones retiro y deposito, consulta de saldo y revision de historial de trasnacciones
 
 # Consideraciones importantes!!!!!!!
--Se pretende que esta API sea probada utilizando Swagger
+- Se pretende que esta API sea probada utilizando Swagger
 
 - Los id de las cuentas son numeros enteros positivos en orden secuencial (1, 2, 3 ,4, etc)
 
 - Los numeros de cuenta siguen la misma convencion, pero rellenando con ceros al a izquerda para llegar a 10 caracteres (0000000001, 0000000002, etc)
 
--El documento mencionaba la elaboracion de un test para una funcionalidad de intereses, esta funcionalidad no se mencionaba en la parte de requerimientos, asi que decidí omitirla (Pero no tendria problemas con implementarla si se proporciona mas informacion sobre los requerimientos)
+- El documento mencionaba la elaboracion de un test para una funcionalidad de intereses, esta funcionalidad no se mencionaba en la parte de requerimientos, asi que decidí omitirla (Pero no tendria problemas con implementarla si se proporciona mas informacion sobre los requerimientos)
 
 
 # Herramientas utilizadas:
@@ -55,5 +55,5 @@ en todos los requerimientos dados en el PDF de instrucciones.
 # Cómo ejecutar las pruebas
 1. Asegurate de que el proyecto no se este ejecutando
 
-2. Ejecuta este comando desde la raiz del proyecto (carpeta pruebadotnet)
+2. Ejecuta este comando desde la raiz del proyecto (carpeta pruebadotnet), recomiendo usar la consola de visual studio
 -  dotnet test
